@@ -1,0 +1,20 @@
+class hello 
+{
+  public static void main(String args[])
+
+{ 
+  int x = 5;
+  int y = 8;
+  
+   int a =5;
+   int b =6;
+  
+  boolean result = x>b && a>b;
+
+
+   System.out.println(!result);
+      
+}
+
+} 
+
