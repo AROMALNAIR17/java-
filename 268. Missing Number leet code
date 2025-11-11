@@ -1,0 +1,17 @@
+class Solution {
+    public int missingNumber(int[] nums) {
+        int n =nums.length;
+        int Sumy= n*(n+1)/2;
+        int arraySum=0;
+        for(int i=0;i<nums.length;i++)
+         arraySum += nums[i];
+        return Sumy-arraySum;
+
+
+
+        
+    }
+}
+
+
+here we used mathametical formula to find the answer 
