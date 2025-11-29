@@ -1,0 +1,22 @@
+import java.util.Scanner;
+ 
+public  class temp{
+  public static void main(String[] args) {
+       System.out.println("enter thee first letter ");
+    Scanner sc = new Scanner (System.in);
+    char ch =sc.next().trim().charAt(0);
+ 
+
+    if(ch<='a' &&ch>='b'){
+      System.out.println("uppercase");
+    }else{
+      System.out.println("lowercase");
+    }
+
+ 
+  
+  
+    }
+    
+      
+  }
