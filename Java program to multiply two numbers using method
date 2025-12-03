@@ -1,0 +1,19 @@
+ 
+import java.util.Scanner;
+
+ public class temp{
+  public static void main(String[] args) {
+      Scanner sc=new Scanner(System.in);
+      int a =sc.nextInt();
+      int b=sc.nextInt();
+      int result=multiplay(a,b);
+      System.out.println(result);
+  }
+  public static int multiplay(int a,int b) {
+    return a*b;
+      
+  }
+      
+
+ }
+  
