@@ -1,0 +1,28 @@
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        int rowlength=matrix.length;
+        int callength=matrix[0].length;
+        int[] row=new int[rowlength];
+        int [] cal=new int [callength];
+        for(int i=0;i<rowlength;i++){
+            for(int j=0;j<callength;j++){
+                if(matrix[i][j]==0){
+                    row[i]=1;
+                    cal[j]=1;
+
+                }
+            }
+        }
+         for(int i=0;i<rowlength;i++){
+            for(int j=0;j<callength;j++){
+                if(row[i]==1||
+                    cal[j]==1){
+                    matrix[i][j]=0;
+
+
+        
+    }
+}
+         }
+         }
+         }
