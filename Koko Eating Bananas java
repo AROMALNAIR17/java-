@@ -1,0 +1,36 @@
+class Solution {
+    public int minEatingSpeed(int[] piles, int h) {
+        int left = 1;
+        int right = 0;
+
+        // Find max pile
+        for (int p : piles) {
+            right = Math.max(right, p);
+        }
+
+        int answer = right;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (canEat(piles, h, mid)) {
+                answer = mid;      // try smaller speed
+                right = mid - 1;
+            } else {
+                left = mid + 1;   // need faster speed
+            }
+        }
+        return answer;
+    }
+
+    // Check if Koko can eat all bananas at speed k within h hours
+    private boolean canEat(int[] piles, int h, int k) {
+        long hours = 0;
+
+        for (int p : piles) {
+            hours += (p + k - 1) / k;   // ceil(p / k)
+        }
+
+        return hours <= h;
+    }
+}
