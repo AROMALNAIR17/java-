@@ -1,0 +1,37 @@
+import java.util.*;
+
+class Solution {
+    public List<String> restoreIpAddresses(String s) {
+        List<String> result = new ArrayList<>();
+        backtrack(s, 0, new ArrayList<>(), result);
+        return result;
+    }
+
+    private void backtrack(String s, int start, List<String> path, List<String> result) {
+        
+        // If we have 4 parts and used all characters
+        if (path.size() == 4 && start == s.length()) {
+            result.add(String.join(".", path));
+            return;
+        }
+
+        // If 4 parts already but string not finished
+        if (path.size() == 4) return;
+
+        for (int len = 1; len <= 3; len++) {
+            if (start + len > s.length()) break;
+
+            String part = s.substring(start, start + len);
+
+            // check leading zero
+            if (part.length() > 1 && part.charAt(0) == '0') continue;
+
+            // check <=255
+            if (Integer.parseInt(part) <= 255) {
+                path.add(part);
+                backtrack(s, start + len, path, result);
+                path.remove(path.size() - 1);
+            }
+        }
+    }
+}
