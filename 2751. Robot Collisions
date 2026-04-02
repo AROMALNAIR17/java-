@@ -1,0 +1,46 @@
+import java.util.*;
+
+class Solution {
+    public List<Integer> survivedRobotsHealths(int[] positions, int[] health, String directions) {
+        int n = positions.length;
+
+        // store index sorted by position
+        Integer[] idx = new Integer[n];
+        for (int i = 0; i < n; i++) idx[i] = i;
+
+        Arrays.sort(idx, (a, b) -> positions[a] - positions[b]);
+
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i : idx) {
+
+            if (directions.charAt(i) == 'R') {
+                stack.push(i);
+            } else {
+                // moving left
+                while (!stack.isEmpty() && health[i] > 0) {
+                    int top = stack.peek();
+
+                    if (health[top] < health[i]) {
+                        stack.pop();
+                        health[i]--;
+                    } else if (health[top] > health[i]) {
+                        health[top]--;
+                        health[i] = 0;
+                    } else {
+                        stack.pop();
+                        health[i] = 0;
+                    }
+                }
+            }
+        }
+
+        // collect survivors
+        List<Integer> result = new ArrayList<>();
+        for (int h : health) {
+            if (h > 0) result.add(h);
+        }
+
+        return result;
+    }
+}
