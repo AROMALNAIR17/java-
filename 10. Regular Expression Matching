@@ -1,0 +1,33 @@
+class Solution {
+    public boolean isMatch(String s, String p) {
+        return helper(s, p, 0, 0);
+    }
+
+    private boolean helper(String s, String p, int i, int j) {
+
+        // If pattern finished, string should also be finished
+        if (j == p.length()) {
+            return i == s.length();
+        }
+
+        // Check if current characters match
+        boolean match = (i < s.length() &&
+                (s.charAt(i) == p.charAt(j) || p.charAt(j) == '.'));
+
+        // If next char is '*'
+        if (j + 1 < p.length() && p.charAt(j + 1) == '*') {
+
+            // 1. Ignore '*' (0 occurrence)
+            // 2. Use '*' (if match, move string forward)
+            return helper(s, p, i, j + 2) ||
+                   (match && helper(s, p, i + 1, j));
+        }
+
+        // Normal match case
+        if (match) {
+            return helper(s, p, i + 1, j + 1);
+        }
+
+        return false;
+    }
+}
