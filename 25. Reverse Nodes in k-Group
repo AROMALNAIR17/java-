@@ -1,0 +1,30 @@
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
+        // Check if we have k nodes
+        ListNode curr = head;
+        int count = 0;
+
+        while (curr != null && count < k) {
+            curr = curr.next;
+            count++;
+        }
+
+        // If we have k nodes, reverse
+        if (count == k) {
+            ListNode prev = reverseKGroup(curr, k); // process rest
+
+            // Reverse current k nodes
+            while (count-- > 0) {
+                ListNode next = head.next;
+                head.next = prev;
+                prev = head;
+                head = next;
+            }
+
+            return prev;
+        }
+
+        // Less than k nodes → return as it is
+        return head;
+    }
+}
