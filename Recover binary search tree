@@ -1,0 +1,40 @@
+class Solution {
+
+    TreeNode first = null;
+    TreeNode second = null;
+    TreeNode prev = null;
+
+    public void recoverTree(TreeNode root) {
+        inorder(root);
+
+        // Swap values
+        int temp = first.val;
+        first.val = second.val;
+        second.val = temp;
+    }
+
+    private void inorder(TreeNode root) {
+
+        if (root == null) {
+            return;
+        }
+
+        inorder(root.left);
+
+        // Detect swapped nodes
+        if (prev != null && prev.val > root.val) {
+
+            // First violation
+            if (first == null) {
+                first = prev;
+            }
+
+            // Second violation
+            second = root;
+        }
+
+        prev = root;
+
+        inorder(root.right);
+    }
+}
